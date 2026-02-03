@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import ProductListPresenter from "./ProductListPresenter";
 const ProductListContainer = () => {
   const {
     data: products,
@@ -16,9 +17,11 @@ const ProductListContainer = () => {
   const [sortBy, setSortBy] = useState("name");
   const [filter, setFilter] = useState("");
 
-  const handleAddToCard = (product) => {
+  const handleAddToCart = (product) => {
     setCart([...cart, product]);
+    console.log("clicking add to cart");
   };
+
   const handleSortChange = (value) => {
     setSortBy(value);
   };
@@ -28,24 +31,22 @@ const ProductListContainer = () => {
   };
 
   const processedProducts = products
-    .filter((p) =>
-      p.title ? p.title.toLowerCase().includes(filter.toLowerCase()) : true,
-    )
-    .sort((a, b) => {
+    ?.filter((p) => p.title.toLowerCase().includes(filter.toLowerCase()))
+    ?.sort((a, b) => {
       if (sortBy === "price") {
         return a.price - b.price;
       }
       return a.title.localeCompare(b.title);
     });
-
+    
   return (
     <ProductListPresenter
       products={processedProducts}
       loading={isLoading}
       error={isError}
       cart={cart}
-      onAddToCard={handleAddToCard}
-      orSortChange={handleSortChange}
+      onAddToCart={handleAddToCart}
+      onSortChange={handleSortChange}
       onFilterChange={handleFilterChange}
     />
   );
