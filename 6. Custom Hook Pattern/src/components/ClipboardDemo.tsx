@@ -1,9 +1,16 @@
-import React from 'react'
+import useClipboard from "../hooks/useClipboard";
 
-const ClipboardDemo = () => {
+function ClipboardDemo() {
+  const {copy, copied} = useClipboard();
+
   return (
-    <div>ClipboardDemo</div>
-  )
+    <div>
+      <button onClick={() => copy("Hello World Naim SOrker")}>
+        {" "}
+        {copied ? "Copied!" : "Copy Text"}
+      </button>
+    </div>
+  );
 }
 
-export default ClipboardDemo
+export default ClipboardDemo;
