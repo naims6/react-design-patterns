@@ -1,10 +1,11 @@
 import './App.css'
+import LikeButton from './components/LikeButton'
 
 function App() {
 
   return (
     <>
-      <h1>Optimistic Pattern</h1>
+      <LikeButton postId='123'/>
     </>
   )
 }
