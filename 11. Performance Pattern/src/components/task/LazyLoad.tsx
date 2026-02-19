@@ -1,9 +1,12 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useContext, useState } from "react";
+import { UserContext } from "./context/userContext";
 
 const CountryDropdown = React.lazy(() => import("./CountryDropdown"));
 
 const SelectCountry = () => {
   const [showCountry, setShowCountry] = useState(false);
+  const user = useContext(UserContext);
+  console.log(user);
   return (
     <div>
       <form>
@@ -12,7 +15,7 @@ const SelectCountry = () => {
         <select onClick={() => setShowCountry(true)}>
           <option value="">Select a Country</option>
           {showCountry && (
-            <Suspense fallback={<h1>Loading...........</h1>}>
+            <Suspense fallback={"Loading..."}>
               <CountryDropdown />
             </Suspense>
           )}
