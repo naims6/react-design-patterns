@@ -1,9 +1,10 @@
 import "./App.css";
+import Toolbar from "./Components/Toolbar";
 
 function App() {
   return (
     <>
-      <h1>Slot Pattern</h1>
+      <Toolbar />
     </>
   );
 }
